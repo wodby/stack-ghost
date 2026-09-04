@@ -1,29 +1,34 @@
-name: example-stack
-icon: nginx
-title: Example Stack
-
-env:
-- name: APP_ENV
-  value: prod
+name: ghost
+icon: ghost
+title: Ghost
 
 services:
-- name: web
-  title: Web
-  service: nginx
+- name: ghost
+  title: Ghost
+  service: ghost
   required: true
   main: true
   replicas: 1
-  env:
-  - name: NGINX_VHOST_PRESET
-    value: html
-  workloads:
-  - name: main
-    containers:
-    - name: nginx
-      resources:
-        request:
-          cpu: 100
-          memory: 128
-        limit:
-          cpu: 500
-          memory: 512
+  volumes:
+  - name: content
+    size: 20
+  links:
+  - name: db
+    service: mysql
+  - name: sendmail
+    service: opensmtpd
+
+- name: mysql
+  title: MySQL
+  service: mysql
+  required: true
+  replicas: 1
+  volumes:
+  - name: data
+    size: 20
+
+- name: opensmtpd
+  title: OpenSMTPD
+  service: opensmtpd
+  required: true
+  replicas: 1
