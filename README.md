@@ -4,6 +4,10 @@ Deploy Ghost with MySQL and transactional email support on Kubernetes using Wodb
 
 This repository defines the Wodby stack manifest and default service composition for Ghost.
 
+<!-- wodby:generated:start -->
+
+## Stack contract
+
 - [Ghost stack on Wodby](https://wodby.com/stacks/ghost)
 - [Browse Wodby application stacks](https://wodby.com/stacks)
 - [Wodby stack documentation](https://wodby.com/docs/2.0/stacks/)
@@ -19,15 +23,21 @@ This repository defines the Wodby stack manifest and default service composition
 
 | Component / service | Default configuration |
 | --- | --- |
-| Ghost (`ghost`)<br>`ghost` | required; main HTTP service; one replica; 20 GB content volume |
-| MySQL (`mysql`)<br>`mysql` | required; MySQL 8; one replica; 20 GB data volume |
-| OpenSMTPD (`opensmtpd`)<br>`opensmtpd` | required; relays Ghost transactional email |
+| Ghost<br>`ghost` | required; enabled by default; volumes: `content` 20 GB; links: `db` → `mysql`, `sendmail` → `opensmtpd` |
+| MySQL<br>`mysql` | required; enabled by default; volumes: `data` 20 GB |
+| OpenSMTPD<br>`opensmtpd` | required; enabled by default |
 
-Ghost supports MySQL 8 in production; MariaDB is not supported. Configure an SMTP integration for OpenSMTPD and set
-Ghost's required email sender to an address accepted by that provider.
+Enabled optional services are selected by default but can be excluded when an
+app is created. Disabled optional services are available but not selected by
+default. Required services cannot be excluded.
 
-Ghost 6 persists files in `/var/lib/ghost/content`. A future Ghost 7 option will require an explicit storage migration
-and must not be introduced as a compatible image update.
+## Validate the stack manifest
+
+```bash
+wodby stack validate-manifest stack.yml --org <org-id>
+```
+
+<!-- wodby:generated:end -->
 
 ## Deploy this stack
 
