@@ -1,6 +1,6 @@
 # Ghost application stack for Kubernetes on Wodby
 
-Deploy Ghost with MySQL and transactional email support on Kubernetes using Wodby.
+Deploy Ghost with MySQL 8.4 LTS and transactional email support on Kubernetes using Wodby.
 
 This repository defines the Wodby stack manifest and default service composition for Ghost.
 
@@ -24,7 +24,7 @@ This repository defines the Wodby stack manifest and default service composition
 | Component / service | Default configuration |
 | --- | --- |
 | Ghost<br>`ghost` | required; enabled by default; volumes: `content` 20 GB; links: `db` → `mysql`, `sendmail` → `opensmtpd` |
-| MySQL<br>`mysql` | required; enabled by default; volumes: `data` 20 GB |
+| MySQL<br>`mysql` | required; enabled by default; options: `8.4` (default); volumes: `data` 20 GB |
 | OpenSMTPD<br>`opensmtpd` | required; enabled by default |
 
 Enabled optional services are selected by default but can be excluded when an
