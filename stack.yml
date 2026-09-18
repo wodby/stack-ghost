@@ -22,6 +22,9 @@ services:
   title: MySQL
   service: mysql
   required: true
+  options:
+  - version: '8.4'
+    default: true
   replicas: 1
   volumes:
   - name: data
