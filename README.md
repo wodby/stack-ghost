@@ -44,6 +44,11 @@ wodby stack validate-manifest stack.yml --org <org-id>
 Add this stack from the Wodby catalog, configure the email sender and OpenSMTPD relay integration, then create the app.
 The Ghost administration interface is available at `/ghost/` on the main application route.
 
+Connect an SMTP relay integration to OpenSMTPD for production. Public mail servers usually reject mail sent directly
+from a cluster, so without a relay, password resets, staff invitations, and member email may not arrive. Ghost's
+emailed sign-in code for new devices is off by default for this reason. Set "Verify new devices by email" to `true`
+once mail is delivered.
+
 Review storage sizes and resource allocations when creating production applications. Ghost runs as one application
 replica; use an external CDN or cache for additional delivery capacity rather than increasing the replica count.
 
