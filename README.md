@@ -10,6 +10,7 @@ This repository defines the Wodby stack manifest and default service composition
 
 - [Ghost stack on Wodby](https://wodby.com/stacks/ghost)
 - [Browse Wodby application stacks](https://wodby.com/stacks)
+- [Ghost stack guide](https://wodby.com/docs/2.0/stacks/catalog/ghost/)
 - [Wodby stack documentation](https://wodby.com/docs/2.0/stacks/)
 - [Stack manifest reference](https://wodby.com/docs/2.0/stacks/template/)
 
